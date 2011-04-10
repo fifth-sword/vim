@@ -377,9 +377,26 @@ command! Sjis Cp932
 " ハイライト on
 syntax enable
 
-" colorschme
-set background=dark
-colorscheme solarized
+" ターミナルタイプによるカラー設定
+if !has('gui_macvim')
+  if &term =~ "xterm-debian" || &term =~ "xterm-xfree86" || &term =~ "xterm-256color"
+   set t_Co=16
+   set t_Sf=[3%dm
+   set t_Sb=[4%dm
+  elseif &term =~ "xterm-color"
+   set t_Co=8
+   set t_Sf=[3%dm
+   set t_Sb=[4%dm
+  endif
+
+  " 補完候補の色づけ for vim7
+  hi Pmenu ctermbg=white ctermfg=darkgray
+  hi PmenuSel ctermbg=blue ctermfg=white
+  hi PmenuSbar ctermbg=0 ctermfg=9
+endif
+
+" ハイライト on
+syntax enable
 
 "-------------------------------------------------------------------------------
 " 編集関連 Edit
