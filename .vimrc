@@ -32,18 +32,16 @@ imap <C-K>  <ESC>"*pa
 command! Ev edit $MYVIMRC
 command! Rv source $MYVIMRC
 
-if has('gui_macvim')
 " pathogenでftdetectなどをloadさせるために一度ファイルタイプ判定をoff
-  filetype off
-  syntax off
-  filetype indent off
-  " pathogen.vimによってbundle配下のpluginをpathに加える
-  call pathogen#runtime_append_all_bundles()
-  call pathogen#helptags()
-  set helpfile=$VIMRUNTIME/doc/help.txt
-  " ファイルタイプ判定をon
-  filetype plugin on
-endif
+filetype off
+syntax off
+filetype indent off
+" pathogen.vimによってbundle配下のpluginをpathに加える
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+set helpfile=$VIMRUNTIME/doc/help.txt
+" ファイルタイプ判定をon
+filetype plugin on
 
 "-------------------------------------------------------------------------------
 " ステータスライン StatusLine
