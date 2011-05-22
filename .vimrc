@@ -1,17 +1,4 @@
 "-------------------------------------------------------------------------------
-" Vundle
-"-------------------------------------------------------------------------------
-filetype plugin off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'Shougo/neocomplcache'
-
-filetype plugin indent on
-"-------------------------------------------------------------------------------
 " 基本設定 Basics
 "-------------------------------------------------------------------------------
 set nocompatible                 " vi互換を捨てる
@@ -446,10 +433,27 @@ vnoremap ' "zdi'<C-R>z'<ESC>
 " autocmd BufWritePre * :%s/\t/  /ge
 
 "-------------------------------------------------------------------------------
-" その他 Misc
+" Plugins
 "-------------------------------------------------------------------------------
+filetype plugin off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+" color scheme
+Bundle 'altercation/vim-colors-solarized'
+
+Bundle 'scrooloose/nerdtree'
+
+" Git staff
+Bundle 'tpope/vim-fugitive'
+
+Bundle 'Lokaltog/vim-easymotion'
+let g:EasyMotion_leader_key='<LocalLeader>'
 
 " neocomplcache.vim {{{
+Bundle 'Shougo/neocomplcache'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -511,3 +515,4 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 "}}}
 
 
+filetype plugin indent on
