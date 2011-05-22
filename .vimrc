@@ -123,17 +123,16 @@ set cindent      " Cプログラムファイルの自動インデントを始め
 " softtabstopはTabキー押し下げ時の挿入される空白の量，0の場合はtabstopと同じ，BSにも影響する
 set tabstop=2 shiftwidth=2 softtabstop=0
 
-if has("autocmd")
-  "ファイルタイプの検索を有効にする
-  filetype plugin on
-  "そのファイルタイプにあわせたインデントを利用する
-  filetype indent on
-  " これらのftではインデントを無効に
-  "autocmd FileType php filetype indent off
-  autocmd FileType html :set indentexpr=
-  autocmd FileType xhtml :set indentexpr=
-endif
-
+augroup ftautodetect
+autocmd!
+"ファイルタイプの検索を有効にする
+filetype plugin on
+"そのファイルタイプにあわせたインデントを利用する
+filetype indent on
+" これらのftではインデントを無効に
+autocmd FileType html :set indentexpr=
+autocmd FileType xhtml :set indentexpr=
+augroup END
 
 "-------------------------------------------------------------------------------
 " 補完・履歴 Complete
@@ -199,36 +198,21 @@ nnoremap <C-i>  :<C-u>help<Space>
 " カーソル下のキーワードをヘルプでひく
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 
-" :Gb <args> でGrepBufferする
-command! -nargs=1 Gb :GrepBuffer <args>
-" カーソル下の単語をGrepBufferする
-nnoremap <C-g><C-b> :<C-u>GrepBuffer<Space><C-r><C-w><Enter>
-
 "-------------------------------------------------------------------------------
 " 移動設定 Move
 "-------------------------------------------------------------------------------
-
-" カーソルを表示行で移動する。論理行移動は<C-n>,<C-p>
-nnoremap h <Left>
-nnoremap j gj
-nnoremap k gk
-nnoremap l <Right>
-nnoremap <Down> gj
-nnoremap <Up>   gk
 
 " 行頭、行末をterminalに合わせる
 nmap <C-a> ^
 nmap <C-e> $
 
 " insert mode での移動
-imap  <C-e> <END>
-imap  <C-a> <HOME>
-
-" インサートモードでもhjklで移動（Ctrl押すけどね）
-imap <C-j> <Down>
-imap <C-k> <Up>
-imap <C-h> <Left>
-imap <C-l> <Right>
+"inoremap <C-a> <HOME>
+"inoremap <C-e> <END>
+"inoremap <C-j> <Down>
+"inoremap <C-k> <Up>
+"inoremap <C-h> <Left>
+"inoremap <C-l> <Right>
 
 "フレームサイズを怠惰に変更する
 map <kPlus> <C-W>+
@@ -336,8 +320,6 @@ if exists('&ambiwidth')
   set ambiwidth=double
 endif
 
-" cvsの時は文字コードをeuc-jpに設定
-autocmd FileType cvs :set fileencoding=euc-jp
 " 以下のファイルの時は文字コードをutf-8に設定
 autocmd FileType svn :set fileencoding=utf-8
 autocmd FileType js :set fileencoding=utf-8
@@ -382,9 +364,6 @@ if !has('gui_macvim')
   hi PmenuSbar ctermbg=0 ctermfg=9
 endif
 
-" ハイライト on
-syntax enable
-
 "-------------------------------------------------------------------------------
 " 編集関連 Edit
 "-------------------------------------------------------------------------------
@@ -399,11 +378,6 @@ else
   inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 endif
 
-" yeでそのカーソル位置にある単語をレジスタに追加
-nmap ye :let @"=expand("<cword>")<CR>
-" Visualモードでのpで選択範囲をレジスタの内容に置き換える
-vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
-
 " Tabキーを空白に変換
 set expandtab
 
@@ -414,7 +388,6 @@ inoremap , ,<Space>
 inoremap <C-u>  <C-g>u<C-u>
 inoremap <C-w>  <C-g>u<C-w>
 
-"
 " 括弧を自動補完
 inoremap { {}<LEFT>
 inoremap [ []<LEFT>
@@ -517,6 +490,5 @@ let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 "}}}
-
 
 filetype plugin indent on
