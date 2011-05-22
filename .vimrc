@@ -1,4 +1,14 @@
 "-------------------------------------------------------------------------------
+" Vundle
+"-------------------------------------------------------------------------------
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'Shougo/neocomplcache'
+"-------------------------------------------------------------------------------
 " 基本設定 Basics
 "-------------------------------------------------------------------------------
 set nocompatible                 " vi互換を捨てる
@@ -31,18 +41,6 @@ imap <C-K>  <ESC>"*pa
 " Ev/Rvでvimrcの編集と反映
 command! Ev edit $MYVIMRC
 command! Rv source $MYVIMRC
-
-" pathogenでftdetectなどをloadさせるために一度ファイルタイプ判定をoff
-filetype off
-syntax off
-filetype indent off
-" pathogen.vimによってbundle配下のpluginをpathに加える
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-set helpfile=$VIMRUNTIME/doc/help.txt
-" ファイルタイプ判定をon
-filetype plugin on
-
 "-------------------------------------------------------------------------------
 " ステータスライン StatusLine
 "-------------------------------------------------------------------------------
