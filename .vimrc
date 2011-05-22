@@ -1,6 +1,7 @@
 "-------------------------------------------------------------------------------
 " Vundle
 "-------------------------------------------------------------------------------
+filetype plugin off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -8,6 +9,8 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'Shougo/neocomplcache'
+
+filetype plugin indent on
 "-------------------------------------------------------------------------------
 " 基本設定 Basics
 "-------------------------------------------------------------------------------
