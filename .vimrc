@@ -450,7 +450,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-fugitive'
 
 Bundle 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key='<LocalLeader>'
+let g:EasyMotion_leader_key=';'
 
 " neocomplcache.vim {{{
 Bundle 'Shougo/neocomplcache'
