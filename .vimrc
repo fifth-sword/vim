@@ -445,12 +445,16 @@ Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
 
 Bundle 'scrooloose/nerdtree'
+Bundle 'wincent/Command-T'
+noremap <C-w>t :CommandT<CR>
+
+Bundle 'ZoomWin'
 
 " Git staff
 Bundle 'tpope/vim-fugitive'
 
 Bundle 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key=';'
+let g:EasyMotion_leader_key='<C-f>'
 
 " neocomplcache.vim {{{
 Bundle 'Shougo/neocomplcache'
