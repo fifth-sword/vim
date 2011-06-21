@@ -418,16 +418,45 @@ Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
 
 Bundle 'scrooloose/nerdtree'
-Bundle 'wincent/Command-T'
-noremap <C-w>t :CommandT<CR>
 
 Bundle 'ZoomWin'
 
 " Git staff
 Bundle 'tpope/vim-fugitive'
 
-Bundle 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key='<C-f>'
+" unite.vim {{{
+Bundle 'Shougo/unite.vim'
+""" Unite.vim
+" 起動時にインサートモードで開始
+let g:unite_enable_start_insert = 1
+let g:unite_winheight = 5
+let g:unite_split_rule = "below"
+
+" インサート／ノーマルどちらからでも呼び出せるようにキーマップ
+nnoremap <silent> <C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+inoremap <silent> <C-f> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> <C-b> :<C-u>Unite buffer file_mru<CR>
+inoremap <silent> <C-b> <ESC>:<C-u>Unite buffer file_mru<CR>
+
+" バッファ一覧
+nnoremap <silent> :b<Space> :<C-u>UniteWithBufferDir -buffer-name=buffer file<CR>
+" ファイル一覧
+nnoremap <silent> :f<Space> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+" レジスタ一覧
+nnoremap <silent> :r<Space> :<C-u>Unite -buffer-name=register register<CR>
+" 最近使用したファイル一覧
+nnoremap <silent> :m<Space> :<C-u>Unite file_mru<CR>
+
+" unite.vim上でのキーマッピング
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+  " 単語単位からパス単位で削除するように変更
+  imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
+  " ESCキーを2回押すと終了する
+  nmap <silent><buffer> <ESC><ESC> q
+  imap <silent><buffer> <ESC><ESC> <ESC>q
+endfunction
+"}}}
 
 " neocomplcache.vim {{{
 Bundle 'Shougo/neocomplcache'
