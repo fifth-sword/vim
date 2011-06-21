@@ -426,7 +426,9 @@ Bundle 'tpope/vim-fugitive'
 
 " unite.vim {{{
 Bundle 'Shougo/unite.vim'
-""" Unite.vim
+" plugins
+Bundle "h1mesuke/unite-outline"
+
 " 起動時にインサートモードで開始
 let g:unite_enable_start_insert = 1
 let g:unite_winheight = 5
@@ -456,6 +458,12 @@ function! s:unite_my_settings()
   nmap <silent><buffer> <ESC><ESC> q
   imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
+
+
+nnoremap <silent> <C-o> :<C-u>Unite -buffer-name=outline  -winheight=90 -winwidth=90 outline<CR>
+
+call unite#set_buffer_name_option('outline', 'ignorecase', 1)
+call unite#set_buffer_name_option('outline', 'smartcase', 1)
 "}}}
 
 " neocomplcache.vim {{{
