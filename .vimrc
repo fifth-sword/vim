@@ -37,22 +37,12 @@ command! Rv source $MYVIMRC
 "-------------------------------------------------------------------------------
 set laststatus=2 " 常にステータスラインを表示
 
-"カーソルが何行目の何列目に置かれているかを表示する
-set ruler
-
 "ステータスラインに文字コードと改行文字を表示する
 if winwidth(0) >= 120
   set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %F%=[%{GetB()}]\ %l,%c%V%8P
 else
   set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %f%=[%{GetB()}]\ %l,%c%V%8P
 endif
-
-"入力モード時、ステータスラインのカラーを変更
-augroup InsertHook
-autocmd!
-autocmd InsertEnter * highlight StatusLine guifg=#ccdc90 guibg=#2E4340
-autocmd InsertLeave * highlight StatusLine guifg=#2E4340 guibg=#ccdc90
-augroup END
 
 function! GetB()
   let c = matchstr(getline('.'), '.', col('.') - 1)
@@ -81,7 +71,6 @@ func! String2Hex(str)
   endwhile
   return out
 endfunc
-
 "-------------------------------------------------------------------------------
 " 表示 Apperance
 "-------------------------------------------------------------------------------
@@ -123,17 +112,6 @@ set cindent      " Cプログラムファイルの自動インデントを始め
 " softtabstopはTabキー押し下げ時の挿入される空白の量，0の場合はtabstopと同じ，BSにも影響する
 set tabstop=2 shiftwidth=2 softtabstop=0
 
-augroup ftautodetect
-autocmd!
-"ファイルタイプの検索を有効にする
-filetype plugin on
-"そのファイルタイプにあわせたインデントを利用する
-filetype indent on
-" これらのftではインデントを無効に
-autocmd FileType html :set indentexpr=
-autocmd FileType xhtml :set indentexpr=
-augroup END
-
 "-------------------------------------------------------------------------------
 " 補完・履歴 Complete
 "-------------------------------------------------------------------------------
@@ -142,37 +120,6 @@ set wildchar=<tab>         " コマンド補完を開始するキー
 set wildmode=list:full     " リスト表示，最長マッチ
 set history=1000           " コマンド・検索パターンの履歴数
 set complete+=k            " 補完に辞書ファイル追加
-
-"-------------------------------------------------------------------------------
-" タグ関連 Tags
-"-------------------------------------------------------------------------------
-" set tags
-if has("autochdir")
-  " 編集しているファイルのディレクトリに自動で移動
-  set autochdir
-  set tags=tags:
-else
-  set tags=./tags,./../tags,./*/tags,./../../tags,./../../../tags,./../../../../tags,./../../../../../tags
-endif
-
-"tab pagesを使い易くする
-nnoremap <S-t> <Nop>
-nnoremap <S-t>n :<C-u>tabnew<CR>
-nnoremap <S-t>q :<C-u>tabclose<CR>
-nnoremap <S-t>o :<C-u>tabonly<CR>
-nnoremap <S-t>j :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
-nnoremap <S-t>k gT
-
-"tags-and-searchesを使い易くする
-nnoremap t  <Nop>
-"「飛ぶ」
-nnoremap tt  <C-]>
-"「進む」
-nnoremap tj  :<C-u>tag<CR>
-"「戻る」
-nnoremap tk  :<C-u>pop<CR>
-"履歴一覧
-nnoremap tl  :<C-u>tags<CR>
 
 "-------------------------------------------------------------------------------
 " 検索設定 Search
@@ -207,12 +154,12 @@ nmap <C-a> ^
 nmap <C-e> $
 
 " insert mode での移動
-"inoremap <C-a> <HOME>
-"inoremap <C-e> <END>
-"inoremap <C-j> <Down>
-"inoremap <C-k> <Up>
-"inoremap <C-h> <Left>
-"inoremap <C-l> <Right>
+inoremap <C-a> <HOME>
+inoremap <C-e> <END>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
 
 "フレームサイズを怠惰に変更する
 map <kPlus> <C-W>+
@@ -221,33 +168,15 @@ map <kMinus> <C-W>-
 " 前回終了したカーソル行に移動
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
-" 最後に編集された位置に移動
-nnoremap gb '[
-nnoremap gp ']
-
 " 対応する括弧に移動
 nnoremap [ %
 nnoremap ] %
-
-" 最後に変更されたテキストを選択する
-nnoremap gc  `[v`]
-vnoremap gc <C-u>normal gc<Enter>
-onoremap gc <C-u>normal gc<Enter>
-
-" カーソル位置の単語をyankする
-nnoremap vy vawy
 
 " 矩形選択で自由に移動する
 set virtualedit+=block
 
 "ビジュアルモード時vで行末まで選択
 vnoremap v $h
-
-" CTRL-hjklでウィンドウ移動
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-k>j
-nnoremap <C-l> <C-l>j
-nnoremap <C-h> <C-h>j
 
 "-------------------------------------------------------------------------------
 " FileType判定 FileType detection
@@ -264,46 +193,46 @@ set encoding=utf-8    " デフォルトエンコーディング
 " 文字コード関連
 " from ずんWiki http://www.kawaz.jp/pukiwiki/?vim#content_1_7
 " 文字コードの自動認識
-if &encoding !=# 'utf-8'
-  set encoding=japan
-  set fileencoding=japan
-endif
-if has('iconv')
-  let s:enc_euc = 'euc-jp'
-  let s:enc_jis = 'iso-2022-jp'
-  " iconvがeucJP-msに対応しているかをチェック
-  if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
-    let s:enc_euc = 'eucjp-ms'
-    let s:enc_jis = 'iso-2022-jp-3'
-  " iconvがJISX0213に対応しているかをチェック
-  elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
-    let s:enc_euc = 'euc-jisx0213'
-    let s:enc_jis = 'iso-2022-jp-3'
-  endif
-  " fileencodingsを構築
-  if &encoding ==# 'utf-8'
-    let s:fileencodings_default = &fileencodings
-    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
-    let &fileencodings = &fileencodings .','. s:fileencodings_default
-    unlet s:fileencodings_default
-  else
-    let &fileencodings = &fileencodings .','. s:enc_jis
-    set fileencodings+=utf-8,ucs-2le,ucs-2
-    if &encoding =~# '^\(euc-jp\|euc-jisx0213\|eucjp-ms\)$'
-      set fileencodings+=cp932
-      set fileencodings-=euc-jp
-      set fileencodings-=euc-jisx0213
-      set fileencodings-=eucjp-ms
-      let &encoding = s:enc_euc
-      let &fileencoding = s:enc_euc
-    else
-      let &fileencodings = &fileencodings .','. s:enc_euc
-    endif
-  endif
-  " 定数を処分
-  unlet s:enc_euc
-  unlet s:enc_jis
-endif
+"if &encoding !=# 'utf-8'
+"  set encoding=japan
+"  set fileencoding=japan
+"endif
+"if has('iconv')
+"  let s:enc_euc = 'euc-jp'
+"  let s:enc_jis = 'iso-2022-jp'
+"  " iconvがeucJP-msに対応しているかをチェック
+"  if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
+"    let s:enc_euc = 'eucjp-ms'
+"    let s:enc_jis = 'iso-2022-jp-3'
+"  " iconvがJISX0213に対応しているかをチェック
+"  elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
+"    let s:enc_euc = 'euc-jisx0213'
+"    let s:enc_jis = 'iso-2022-jp-3'
+"  endif
+"  " fileencodingsを構築
+"  if &encoding ==# 'utf-8'
+"    let s:fileencodings_default = &fileencodings
+"    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
+"    let &fileencodings = &fileencodings .','. s:fileencodings_default
+"    unlet s:fileencodings_default
+"  else
+"    let &fileencodings = &fileencodings .','. s:enc_jis
+"    set fileencodings+=utf-8,ucs-2le,ucs-2
+"    if &encoding =~# '^\(euc-jp\|euc-jisx0213\|eucjp-ms\)$'
+"      set fileencodings+=cp932
+"      set fileencodings-=euc-jp
+"      set fileencodings-=euc-jisx0213
+"      set fileencodings-=eucjp-ms
+"      let &encoding = s:enc_euc
+"      let &fileencoding = s:enc_euc
+"    else
+"      let &fileencodings = &fileencodings .','. s:enc_euc
+"    endif
+"  endif
+"  " 定数を処分
+"  unlet s:enc_euc
+"  unlet s:enc_jis
+"endif
 " 日本語を含まない場合は fileencoding に encoding を使うようにする
 if has('autocmd')
   function! AU_ReCheck_FENC()
@@ -381,9 +310,6 @@ endif
 " Tabキーを空白に変換
 set expandtab
 
-" コンマの後に自動的にスペースを挿入
-inoremap , ,<Space>
-
 "  Insert mode中で単語単位/行単位の削除をアンドゥ可能にする
 inoremap <C-u>  <C-g>u<C-u>
 inoremap <C-w>  <C-g>u<C-w>
@@ -400,10 +326,10 @@ vnoremap ( "zdi^V(<C-R>z)<ESC>
 vnoremap " "zdi^V"<C-R>z^V"<ESC>
 vnoremap ' "zdi'<C-R>z'<ESC>
 
-" 保存時に行末の空白を除去する
-" autocmd BufWritePre * :%s/\s\+$//ge
-" 保存時にtabをスペースに変換する
-" autocmd BufWritePre * :%s/\t/  /ge
+" 行末の空白を除去する
+nnoremap <C-x> :%s/\s\+$//ge<CR>
+" tabをスペースに変換する
+nnoremap <C-z> * :%s/\t/  /ge<CR>
 
 "-------------------------------------------------------------------------------
 " Plugins
@@ -424,6 +350,10 @@ Bundle 'ZoomWin'
 " Git staff
 Bundle 'tpope/vim-fugitive'
 
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimshell'
+Bundle 'ujihisa/quickrun'
+
 " unite.vim {{{
 Bundle 'Shougo/unite.vim'
 " plugins
@@ -433,12 +363,6 @@ Bundle "h1mesuke/unite-outline"
 let g:unite_enable_start_insert = 1
 let g:unite_winheight = 5
 let g:unite_split_rule = "below"
-
-" インサート／ノーマルどちらからでも呼び出せるようにキーマップ
-nnoremap <silent> <C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-inoremap <silent> <C-f> <ESC>:<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> <C-b> :<C-u>Unite buffer file_mru<CR>
-inoremap <silent> <C-b> <ESC>:<C-u>Unite buffer file_mru<CR>
 
 " バッファ一覧
 nnoremap <silent> :b<Space> :<C-u>UniteWithBufferDir -buffer-name=buffer file<CR>
