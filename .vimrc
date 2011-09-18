@@ -21,13 +21,18 @@ set nowrap                       " 行を折り返さない
 
 " ターミナルでマウスを使用できるようにする
 set mouse=a
-set guioptions+=a
+set guioptions& guioptions+=a
 set ttymouse=xterm2
 
 "ヤンクした文字は、システムのクリップボードに入れる"
 set clipboard=unnamed
 " 挿入モードでCtrl+kを押すとクリップボードの内容を貼り付けられるようにする "
 imap <C-K>  <ESC>"*pa
+
+" Reloadbleにするためにautocmdを自分用に用意
+augroup Mine
+	autocmd!
+augroup END
 
 " Ev/Rvでvimrcの編集と反映
 command! Ev edit $MYVIMRC
@@ -87,11 +92,8 @@ match ZenkakuSpace /　/
 " カーソル行をハイライト
 set cursorline
 " カレントウィンドウにのみ罫線を引く
-augroup cch
-autocmd! cch
-autocmd WinLeave * set nocursorline
-autocmd WinEnter,BufRead * set cursorline
-augroup END
+autocmd Mine WinLeave * set nocursorline
+autocmd Mine WinEnter,BufRead * set cursorline
 
 :hi clear CursorLine
 :hi CursorLine gui=underline
@@ -119,7 +121,7 @@ set wildmenu               " コマンド補完を強化
 set wildchar=<tab>         " コマンド補完を開始するキー
 set wildmode=list:full     " リスト表示，最長マッチ
 set history=1000           " コマンド・検索パターンの履歴数
-set complete+=k            " 補完に辞書ファイル追加
+set complete& complete+=k            " 補完に辞書ファイル追加
 
 "-------------------------------------------------------------------------------
 " 検索設定 Search
@@ -166,14 +168,14 @@ map <kPlus> <C-W>+
 map <kMinus> <C-W>-
 
 " 前回終了したカーソル行に移動
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
+autocmd Mine BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 " 対応する括弧に移動
 nnoremap [ %
 nnoremap ] %
 
 " 矩形選択で自由に移動する
-set virtualedit+=block
+set virtualedit& virtualedit+=block
 
 "ビジュアルモード時vで行末まで選択
 vnoremap v $h
@@ -189,59 +191,14 @@ au BufRead,BufNewFile *.dicon setf xml
 "-------------------------------------------------------------------------------
 set ffs=unix,dos,mac  " 改行文字
 set encoding=utf-8    " デフォルトエンコーディング
-
-" 文字コード関連
-" from ずんWiki http://www.kawaz.jp/pukiwiki/?vim#content_1_7
-" 文字コードの自動認識
-"if &encoding !=# 'utf-8'
-"  set encoding=japan
-"  set fileencoding=japan
-"endif
-"if has('iconv')
-"  let s:enc_euc = 'euc-jp'
-"  let s:enc_jis = 'iso-2022-jp'
-"  " iconvがeucJP-msに対応しているかをチェック
-"  if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
-"    let s:enc_euc = 'eucjp-ms'
-"    let s:enc_jis = 'iso-2022-jp-3'
-"  " iconvがJISX0213に対応しているかをチェック
-"  elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
-"    let s:enc_euc = 'euc-jisx0213'
-"    let s:enc_jis = 'iso-2022-jp-3'
-"  endif
-"  " fileencodingsを構築
-"  if &encoding ==# 'utf-8'
-"    let s:fileencodings_default = &fileencodings
-"    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
-"    let &fileencodings = &fileencodings .','. s:fileencodings_default
-"    unlet s:fileencodings_default
-"  else
-"    let &fileencodings = &fileencodings .','. s:enc_jis
-"    set fileencodings+=utf-8,ucs-2le,ucs-2
-"    if &encoding =~# '^\(euc-jp\|euc-jisx0213\|eucjp-ms\)$'
-"      set fileencodings+=cp932
-"      set fileencodings-=euc-jp
-"      set fileencodings-=euc-jisx0213
-"      set fileencodings-=eucjp-ms
-"      let &encoding = s:enc_euc
-"      let &fileencoding = s:enc_euc
-"    else
-"      let &fileencodings = &fileencodings .','. s:enc_euc
-"    endif
-"  endif
-"  " 定数を処分
-"  unlet s:enc_euc
-"  unlet s:enc_jis
-"endif
 " 日本語を含まない場合は fileencoding に encoding を使うようにする
-if has('autocmd')
-  function! AU_ReCheck_FENC()
-    if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
-      let &fileencoding=&encoding
-    endif
-  endfunction
-  autocmd BufReadPost * call AU_ReCheck_FENC()
-endif
+function! AU_ReCheck_FENC()
+  if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
+    let &fileencoding=&encoding
+  endif
+endfunction
+autocmd Mine BufReadPost * call AU_ReCheck_FENC()
+
 " 改行コードの自動認識
 set fileformats=unix,dos,mac
 " □とか○の文字があってもカーソル位置がずれないようにする
@@ -250,13 +207,13 @@ if exists('&ambiwidth')
 endif
 
 " 以下のファイルの時は文字コードをutf-8に設定
-autocmd FileType svn :set fileencoding=utf-8
-autocmd FileType js :set fileencoding=utf-8
-autocmd FileType css :set fileencoding=utf-8
-autocmd FileType html :set fileencoding=utf-8
-autocmd FileType xml :set fileencoding=utf-8
-autocmd FileType java :set fileencoding=utf-8
-autocmd FileType scala :set fileencoding=utf-8
+autocmd Mine FileType svn :set fileencoding=utf-8
+autocmd Mine FileType js :set fileencoding=utf-8
+autocmd Mine FileType css :set fileencoding=utf-8
+autocmd Mine FileType html :set fileencoding=utf-8
+autocmd Mine FileType xml :set fileencoding=utf-8
+autocmd Mine FileType java :set fileencoding=utf-8
+autocmd Mine FileType scala :set fileencoding=utf-8
 
 " ワイルドカードで表示するときに優先度を低くする拡張子
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
@@ -306,9 +263,6 @@ else
   set noimcmdline
   inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 endif
-
-" Tabキーを空白に変換
-set expandtab
 
 "  Insert mode中で単語単位/行単位の削除をアンドゥ可能にする
 inoremap <C-u>  <C-g>u<C-u>
@@ -361,7 +315,7 @@ Bundle "h1mesuke/unite-outline"
 
 " 起動時にインサートモードで開始
 let g:unite_enable_start_insert = 1
-let g:unite_winheight = 5
+let g:unite_winheight = 10
 let g:unite_split_rule = "below"
 
 " バッファ一覧
@@ -374,7 +328,7 @@ nnoremap <silent> :r<Space> :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> :m<Space> :<C-u>Unite file_mru<CR>
 
 " unite.vim上でのキーマッピング
-autocmd FileType unite call s:unite_my_settings()
+autocmd Mine FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
   " 単語単位からパス単位で削除するように変更
   imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
@@ -382,7 +336,6 @@ function! s:unite_my_settings()
   nmap <silent><buffer> <ESC><ESC> q
   imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
-
 
 nnoremap <silent> <C-o> :<C-u>Unite -buffer-name=outline  -winheight=90 -winwidth=90 outline<CR>
 
@@ -407,7 +360,7 @@ let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
+"let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : ''
     \ }
 
@@ -435,21 +388,24 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd Mine FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd Mine FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd Mine FileType java setlocal omnifunc=javacomplete#CompleteJava
+autocmd Mine FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd Mine FileType actionscript setlocal omnifunc=actionscriptcomplete#CompleteAS
+autocmd Mine FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd Mine FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd Mine FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" Enable heavy omni completion.
+" add ruby omnicompletion.
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "}}}
 
 filetype plugin indent on
