@@ -213,9 +213,9 @@ autocmd Mine FileType svn    :set fileencoding=utf-8
 autocmd Mine FileType js     :set fileencoding=utf-8
 autocmd Mine FileType css    :set fileencoding=utf-8
 autocmd Mine FileType html   :set fileencoding=utf-8
-autocmd Mine FileType xml :set fileencoding=utf-8
-autocmd Mine FileType java :set fileencoding=utf-8
-autocmd Mine FileType scala :set fileencoding=utf-8
+autocmd Mine FileType xml    :set fileencoding=utf-8
+autocmd Mine FileType java   :set fileencoding=utf-8
+autocmd Mine FileType scala  :set fileencoding=utf-8
 
 " ワイルドカードで表示するときに優先度を低くする拡張子
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
