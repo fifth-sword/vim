@@ -295,26 +295,18 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-
-" color scheme
 Bundle 'altercation/vim-colors-solarized'
-
 Bundle 'scrooloose/nerdtree'
-
 Bundle 'ZoomWin'
-
-" Git staff
 Bundle 'tpope/vim-fugitive'
-
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
 Bundle 'ujihisa/quickrun'
+Bundle 'Shougo/unite.vim'
+Bundle 'h1mesuke/unite-outline'
+Bundle 'Shougo/neocomplcache'
 
 " unite.vim {{{
-Bundle 'Shougo/unite.vim'
-" plugins
-Bundle "h1mesuke/unite-outline"
-
 " 起動時にインサートモードで開始
 let g:unite_enable_start_insert = 1
 let g:unite_winheight = 10
@@ -340,13 +332,11 @@ function! s:unite_my_settings()
 endfunction
 
 nnoremap <silent> <C-o> :<C-u>Unite -buffer-name=outline  -winheight=90 -winwidth=90 outline<CR>
-
 call unite#set_buffer_name_option('outline', 'ignorecase', 1)
 call unite#set_buffer_name_option('outline', 'smartcase', 1)
 "}}}
 
 " neocomplcache.vim {{{
-Bundle 'Shougo/neocomplcache'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -362,7 +352,7 @@ let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
-"let g:neocomplcache_dictionary_filetype_lists = {
+let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : ''
     \ }
 
@@ -372,19 +362,12 @@ if !exists('g:neocomplcache_keyword_patterns')
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
@@ -411,4 +394,3 @@ let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "}}}
 
 filetype plugin indent on
-echo "vimrc loaded"
