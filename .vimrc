@@ -31,7 +31,7 @@ imap <C-K>  <ESC>"*pa
 
 " Reloadbleにするためにautocmdを自分用に用意
 augroup Mine
-	autocmd!
+  autocmd!
 augroup END
 
 " Ev/Rvでvimrcの編集と反映
@@ -107,6 +107,7 @@ highlight CursorLine ctermbg=black guibg=black
 "-------------------------------------------------------------------------------
 " インデント Indent
 "-------------------------------------------------------------------------------
+set expandtab    " タブ文字はスペース
 set autoindent   " 自動でインデント
 set smartindent  " 新しい行を開始したときに、新しい行のインデントを現在行と同じ量にする。
 set cindent      " Cプログラムファイルの自動インデントを始める
@@ -121,7 +122,7 @@ set wildmenu               " コマンド補完を強化
 set wildchar=<tab>         " コマンド補完を開始するキー
 set wildmode=list:full     " リスト表示，最長マッチ
 set history=1000           " コマンド・検索パターンの履歴数
-set complete& complete+=k            " 補完に辞書ファイル追加
+set complete& complete+=k  " 補完に辞書ファイル追加
 
 "-------------------------------------------------------------------------------
 " 検索設定 Search
@@ -138,7 +139,6 @@ nmap <C-[><C-[> :nohlsearch<CR><ESC>
 vnoremap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 "選択した文字列を置換
 vnoremap /r "xy:%s/<C-R>=escape(@x, '\\/.*$^~[]')<CR>//gc<Left><Left><Left>
-
 "s*置換後文字列/g<Cr>でカーソル下のキーワードを置換
 nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
 
@@ -156,16 +156,18 @@ nmap <C-a> ^
 nmap <C-e> $
 
 " insert mode での移動
-inoremap <C-a> <HOME>
-inoremap <C-e> <END>
-inoremap <C-j> <Down>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-j> <DOWN>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
 "フレームサイズを怠惰に変更する
-map <kPlus> <C-W>+
-map <kMinus> <C-W>-
+map <kPlus> :resize +5<CR>
+map! <kPlus> :resize +5<CR>
+map <kMinus> :resize -5<CR>
+map! <kMinus> :resize -5<CR>
 
 " 前回終了したカーソル行に移動
 autocmd Mine BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
@@ -183,8 +185,8 @@ vnoremap v $h
 "-------------------------------------------------------------------------------
 " FileType判定 FileType detection
 "-------------------------------------------------------------------------------
-au BufRead,BufNewFile *.mayaa setf xml
-au BufRead,BufNewFile *.dicon setf xml
+autocmd Mine BufRead,BufNewFile *.mayaa setf xml
+autocmd Mine BufRead,BufNewFile *.dicon setf xml
 
 "-------------------------------------------------------------------------------
 " エンコーディング関連 Encoding
@@ -207,10 +209,10 @@ if exists('&ambiwidth')
 endif
 
 " 以下のファイルの時は文字コードをutf-8に設定
-autocmd Mine FileType svn :set fileencoding=utf-8
-autocmd Mine FileType js :set fileencoding=utf-8
-autocmd Mine FileType css :set fileencoding=utf-8
-autocmd Mine FileType html :set fileencoding=utf-8
+autocmd Mine FileType svn    :set fileencoding=utf-8
+autocmd Mine FileType js     :set fileencoding=utf-8
+autocmd Mine FileType css    :set fileencoding=utf-8
+autocmd Mine FileType html   :set fileencoding=utf-8
 autocmd Mine FileType xml :set fileencoding=utf-8
 autocmd Mine FileType java :set fileencoding=utf-8
 autocmd Mine FileType scala :set fileencoding=utf-8
@@ -269,11 +271,11 @@ inoremap <C-u>  <C-g>u<C-u>
 inoremap <C-w>  <C-g>u<C-w>
 
 " 括弧を自動補完
-inoremap { {}<LEFT>
-inoremap [ []<LEFT>
-inoremap ( ()<LEFT>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
+inoremap { {}<Left>
+inoremap [ []<Left>
+inoremap ( ()<Left>
+inoremap " ""<Left>
+inoremap ' ''<Left>
 vnoremap { "zdi^V{<C-R>z}<ESC>
 vnoremap [ "zdi^V[<C-R>z]<ESC>
 vnoremap ( "zdi^V(<C-R>z)<ESC>
@@ -409,3 +411,4 @@ let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "}}}
 
 filetype plugin indent on
+echo "vimrc loaded"
