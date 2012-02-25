@@ -23,6 +23,8 @@ source ~/dotfiles/vim/.vimrc.editing
 "source ~/dotfiles/.vimrc.misc
 ""プラグインに依存するアレ
 "source ~/dotfiles/.vimrc.plugins_setting
+"ファイル別設定
+source ~/dotfiles/vim/.vimrc.files
 
 " MacVim用設定
 if has('gui_running')
