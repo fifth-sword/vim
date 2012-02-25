@@ -15,10 +15,8 @@ source ~/dotfiles/vim/.vimrc.compl
 source ~/dotfiles/vim/.vimrc.search
 "移動関連
 source ~/dotfiles/vim/.vimrc.moving
-""Color関連
-"source ~/dotfiles/.vimrc.colors
-""編集関連
-"source ~/dotfiles/.vimrc.editing
+"編集関連
+source ~/dotfiles/vim/.vimrc.editing
 ""エンコーディング関連
 "source ~/dotfiles/.vimrc.encoding
 ""その他
