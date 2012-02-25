@@ -18,9 +18,11 @@ set viminfo='50,<1000,s100,\"50  " viminfoファイルの設定
 set modelines=0                  " モードラインは無効
 set nowrap                       " 行を折り返さない
 
-if has('gui_macvim')
-  set guioptions-=T
-endif
+" Ctrl-iでヘルプ
+nnoremap <C-i>  :<C-u>help<Space>
+" カーソル下のキーワードをヘルプでひく
+nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
+
 " Reloadable設定
 " http://whileimautomaton.net/2008/08/vimworkshop3-kana-presentation
 " Ev/Rvでvimrcの編集と反映
