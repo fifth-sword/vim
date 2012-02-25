@@ -21,8 +21,8 @@ source ~/dotfiles/vim/.vimrc.editing
 source ~/dotfiles/vim/.vimrc.encoding
 ""その他
 "source ~/dotfiles/.vimrc.misc
-""プラグインに依存するアレ
-"source ~/dotfiles/.vimrc.plugins_setting
+"プラグイン関連
+source ~/dotfiles/vim/.vimrc.plugins
 "ファイル別設定
 source ~/dotfiles/vim/.vimrc.files
 

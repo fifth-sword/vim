@@ -19,6 +19,8 @@ NeoBundle 'tpope/vim-fugitive'                " Git連携Plugin
 NeoBundle 'ujihisa/quickrun'
 NeoBundle 'vim-coffee-script'                 " CoffeeScript用Plugin
 NeoBundle 'Lokaltog/vim-powerline'            " ステータスラインをカッコよくする
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'sjl/gundo.vim'                     " Vimのundo履歴をVisualizeしてくれる
 
 filetype plugin on
 filetype indent on
