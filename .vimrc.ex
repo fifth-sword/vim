@@ -90,8 +90,6 @@ set display=uhex      " 印字不可能文字を16進数で表示
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
 
-" カーソル行をハイライト
-set cursorline
 " カレントウィンドウにのみ罫線を引く
 autocmd Mine WinLeave * set nocursorline
 autocmd Mine WinEnter,BufRead * set cursorline

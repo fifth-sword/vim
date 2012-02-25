@@ -2,7 +2,6 @@
 " 表示関連
 "-------------------------------------------------------------------------------
 syntax enable
-
 set background=dark
 colorscheme solarized
 

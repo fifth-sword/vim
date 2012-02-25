@@ -2,6 +2,7 @@
 " 基本設定 Basics
 "-------------------------------------------------------------------------------
 let mapleader=","                " キーマップリーダー
+set encoding=utf-8               " デフォルトエンコーディングをutf-8に
 set scrolloff=5                  " スクロール時の余白確保
 set textwidth=0                  " 一行に長い文章を書いていても自動折り返しをしない
 set nobackup                     " バックアップ取らない
@@ -13,8 +14,6 @@ set formatoptions=lmoq           " テキスト整形オプション，マルチ
 set visualbell t_vb=             " ビープをならさない
 set browsedir=buffer             " Exploreの初期ディレクトリ
 set whichwrap=b,s,h,l,<,>,[,]    " カーソルを行頭、行末で止まらないようにする
-set showcmd                      " コマンドをステータス行に表示
-set showmode                     " 現在のモードを表示
 set viminfo='50,<1000,s100,\"50  " viminfoファイルの設定
 set modelines=0                  " モードラインは無効
 set nowrap                       " 行を折り返さない

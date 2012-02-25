@@ -6,7 +6,7 @@ source ~/dotfiles/vim/.vimrc.basic
 source ~/dotfiles/vim/.vimrc.display
 
 ""StatusLine設定
-"source ~/dotfiles/.vimrc.statusline
+source ~/dotfiles/vim/.vimrc.statusline
 ""インデント設定
 "source ~/dotfiles/.vimrc.indent
 ""表示関連
