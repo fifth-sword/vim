@@ -1,0 +1,96 @@
+"-------------------------------------------------------------------------------
+" ファイル別設定 File Settings
+"-------------------------------------------------------------------------------
+autocmd R BufRead,BufNewFile *.mayaa  setlocal filetype=xml
+autocmd R BufRead,BufNewFile *.dicon  setlocal filetype=xml
+autocmd R BufRead,BufNewFile *.pom    setlocal filetype=xml
+autocmd R BufRead,BufNewFile *.coffee setlocal filetype=coffee
+
+" インデント {{{
+autocmd R FileType apache     setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType aspvbs     setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType c          setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType cpp        setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType cs         setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType css        setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType coffee     setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType diff       setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType eruby      setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType html       setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType haml       setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType java       setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType javascript setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType perl       setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType php        setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType python     setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType ruby       setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType sh         setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType sql        setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType scala      setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType vb         setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType vim        setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType xhtml      setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType xml        setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType yaml       setlocal sw=2 sts=2 ts=2 et
+" }}}
+
+" 文字コード {{{
+autocmd R FileType apache     :set fileencoding=utf-8
+autocmd R FileType aspvbs     :set fileencoding=utf-8
+autocmd R FileType c          :set fileencoding=utf-8
+autocmd R FileType cpp        :set fileencoding=utf-8
+autocmd R FileType cs         :set fileencoding=utf-8
+autocmd R FileType cvs        :set fileencoding=euc-jp
+autocmd R FileType csv        :set fileencoding=cp932
+autocmd R FileType svn        :set fileencoding=utf-8
+autocmd R FileType css        :set fileencoding=utf-8
+autocmd R FileType coffee     :set fileencoding=utf-8
+autocmd R FileType diff       :set fileencoding=utf-8
+autocmd R FileType eruby      :set fileencoding=utf-8
+autocmd R FileType html       :set fileencoding=utf-8
+autocmd R FileType haml       :set fileencoding=utf-8
+autocmd R FileType java       :set fileencoding=utf-8
+autocmd R FileType javascript :set fileencoding=utf-8
+autocmd R FileType perl       :set fileencoding=utf-8
+autocmd R FileType php        :set fileencoding=utf-8
+autocmd R FileType python     :set fileencoding=utf-8
+autocmd R FileType ruby       :set fileencoding=utf-8
+autocmd R FileType sh         :set fileencoding=utf-8
+autocmd R FileType sql        :set fileencoding=utf-8
+autocmd R FileType scala      :set fileencoding=utf-8
+autocmd R FileType vb         :set fileencoding=utf-8
+autocmd R FileType vim        :set fileencoding=utf-8
+autocmd R FileType xhtml      :set fileencoding=utf-8
+autocmd R FileType xml        :set fileencoding=utf-8
+autocmd R FileType yaml       :set fileencoding=utf-8
+" }}}
+
+" neocompl {{{
+let g:neocomplcache_omni_patterns.c    = '\%(\.\|->\)\h\w*'
+let g:neocomplcache_omni_patterns.cpp  = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.php  = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+
+let g:neocomplcache_include_paths.c    = '.,/usr/include'
+let g:neocomplcache_include_paths.cpp  = '.,/opt/local/include/gcc46/c++,/opt/local/include,/usr/include'
+let g:neocomplcache_include_paths.ruby = '.,~/.rvm/rubies/**/lib/ruby/1.8/,~/.rvm/rubies/**/lib/ruby/1.9.1/'
+
+let g:neocomplcache_include_patterns.cpp  = '^\s*#\s*include'
+let g:neocomplcache_include_patterns.ruby = '^\s*require'
+let g:neocomplcache_include_patterns.perl = '^\s*use'
+
+let g:neocomplcache_include_exprs.ruby = substitute(v:fname,'::','/','g')
+
+let g:neocomplcache_include_suffixes.ruby    = '.rb'
+let g:neocomplcache_include_suffixes.haskell = '.hs'
+
+autocmd R FileType css           setlocal omnifunc=csscomplete#CompleteCSS
+autocmd R FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd R FileType java          setlocal omnifunc=javacomplete#CompleteJava
+autocmd R FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd R FileType actionscript  setlocal omnifunc=actionscriptcomplete#CompleteAS
+autocmd R FileType ruby          setlocal omnifunc=rubycomplete#Complete
+autocmd R FileType python        setlocal omnifunc=pythoncomplete#Complete
+autocmd R FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
+" }}}
+

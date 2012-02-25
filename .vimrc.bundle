@@ -1,0 +1,26 @@
+set nocompatible
+filetype off
+
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim
+  call neobundle#rc(expand('~/.vim/bundle'))
+endif
+
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/neobundle'                  " Plugin管理
+NeoBundle 'Shougo/vimshell'                   " VimのShell
+NeoBundle 'Shougo/vimfiler'                   " Vimのファイラ
+NeoBundle 'Shougo/neocomplcache'              " 補完Plugin
+NeoBundle 'h1mesuke/unite-outline'            " ファイルアウトライン表示Plugin
+NeoBundle 'altercation/vim-colors-solarized'  " 目にやさしいColor Scheme
+NeoBundle 'scrooloose/nerdtree'               " EclipseのPackage Explore的にディレクトリを表示してくれるPlugin
+NeoBundle 'tpope/vim-fugitive'                " Git連携Plugin
+NeoBundle 'ujihisa/quickrun'
+NeoBundle 'vim-coffee-script'                 " CoffeeScript用Plugin
+NeoBundle 'Lokaltog/vim-powerline'            " ステータスラインをカッコよくする
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'sjl/gundo.vim'                     " Vimのundo履歴をVisualizeしてくれる
+
+filetype plugin on
+filetype indent on

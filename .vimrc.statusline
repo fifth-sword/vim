@@ -1,0 +1,13 @@
+"-------------------------------------------------------------------------------
+" ステータスライン StatusLine
+"-------------------------------------------------------------------------------
+set showcmd      " コマンドをステータス行に表示
+set showmode     " 現在のモードを表示
+set laststatus=2 " 常にステータスラインを表示
+set ruler        "カーソルが何行目の何列目に置かれているかを表示する
+
+"自動的に QuickFix リストを表示する
+autocmd R QuickfixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
+autocmd R QuickfixCmdPost lmake,lgrep,lgrepadd,lvimgrep,lvimgrepadd lwin
+
+let g:Powerline_symbols = 'unicode'

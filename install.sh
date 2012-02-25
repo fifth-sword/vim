@@ -1,6 +1,4 @@
-#!/bin/sh
-RC_DIR=`pwd`
-
-ln -sF $RC_DIR/.vim $HOME
-ln -sf $RC_DIR/.vimrc $HOME
-ln -sf $RC_DIR/.gvimrc $HOME
+#!/bin/zsh
+local current=$(cd $(dirname $0) && pwd)
+ln -sF $current/.vimrc $HOME
+ln -sF $current/.vim $HOME
