@@ -17,8 +17,8 @@ source ~/dotfiles/vim/.vimrc.search
 source ~/dotfiles/vim/.vimrc.moving
 "編集関連
 source ~/dotfiles/vim/.vimrc.editing
-""エンコーディング関連
-"source ~/dotfiles/.vimrc.encoding
+"エンコーディング関連
+source ~/dotfiles/vim/.vimrc.encoding
 ""その他
 "source ~/dotfiles/.vimrc.misc
 ""プラグインに依存するアレ
