@@ -1,0 +1,25 @@
+"-------------------------------------------------------------------------------
+" 表示関連
+"-------------------------------------------------------------------------------
+syntax enable
+
+set background=dark
+colorscheme solarized
+
+set showmatch                                     " 括弧の対応をハイライト
+set number                                        " 行番号表示
+set list                                          " 不可視文字表示
+set listchars=tab:>.,trail:_,extends:>,precedes:< " 不可視文字の表示形式
+set display=uhex                                  " 印字不可能文字を16進数で表示
+set cursorline                                    " カーソル行をハイライト
+set lazyredraw                                    " コマンド実行中は再描画しない
+set ttyfast                                       " 高速ターミナル接続を行う
+set cursorline                                    " カーソル行をハイライト
+
+" カレントウィンドウにのみ罫線を引く
+autocmd R WinLeave * set nocursorline
+autocmd R WinEnter,BufRead * set cursorline
+
+" 全角スペースの表示
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+match ZenkakuSpace /　/
