@@ -185,8 +185,10 @@ vnoremap v $h
 "-------------------------------------------------------------------------------
 " FileType判定 FileType detection
 "-------------------------------------------------------------------------------
-autocmd Mine BufRead,BufNewFile *.mayaa setf xml
-autocmd Mine BufRead,BufNewFile *.dicon setf xml
+autocmd Mine BufRead,BufNewFile *.mayaa  setf xml
+autocmd Mine BufRead,BufNewFile *.dicon  setf xml
+autocmd Mine BufRead,BufNewFile *.coffee setf coffee
+autocmd Mine BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
 
 "-------------------------------------------------------------------------------
 " エンコーディング関連 Encoding
@@ -216,7 +218,7 @@ autocmd Mine FileType html   :set fileencoding=utf-8
 autocmd Mine FileType xml    :set fileencoding=utf-8
 autocmd Mine FileType java   :set fileencoding=utf-8
 autocmd Mine FileType scala  :set fileencoding=utf-8
-
+autocmd Mine FileType coffee  :set fileencoding=utf-8
 " ワイルドカードで表示するときに優先度を低くする拡張子
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
@@ -271,11 +273,6 @@ inoremap <C-u>  <C-g>u<C-u>
 inoremap <C-w>  <C-g>u<C-w>
 
 " 括弧を自動補完
-inoremap { {}<Left>
-inoremap [ []<Left>
-inoremap ( ()<Left>
-inoremap " ""<Left>
-inoremap ' ''<Left>
 vnoremap { "zdi^V{<C-R>z}<ESC>
 vnoremap [ "zdi^V[<C-R>z]<ESC>
 vnoremap ( "zdi^V(<C-R>z)<ESC>
@@ -305,6 +302,7 @@ Bundle 'ujihisa/quickrun'
 Bundle 'Shougo/unite.vim'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'Shougo/neocomplcache'
+Bundle 'vim-coffee-script'
 
 " unite.vim {{{
 " 起動時にインサートモードで開始
@@ -313,14 +311,15 @@ let g:unite_winheight = 10
 let g:unite_split_rule = "below"
 
 " バッファ一覧
-nnoremap <silent> :b<Space> :<C-u>UniteWithBufferDir -buffer-name=buffer file<CR>
+nnoremap <S-b> :<C-u>UniteWithBufferDir -buffer-name=buffer file<CR>
 " ファイル一覧
-nnoremap <silent> :f<Space> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <S-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " レジスタ一覧
-nnoremap <silent> :r<Space> :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <S-r> :<C-u>Unite -buffer-name=register register<CR>
 " 最近使用したファイル一覧
-nnoremap <silent> :m<Space> :<C-u>Unite file_mru<CR>
-
+nnoremap <S-m> :<C-u>Unite file_mru<CR>
+" NERDTreeToggle
+nnoremap <S-t> :NERDTreeToggle<CR>
 " unite.vim上でのキーマッピング
 autocmd Mine FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
