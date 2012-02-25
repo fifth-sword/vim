@@ -1,0 +1,34 @@
+"-------------------------------------------------------------------------------
+" 移動設定 Move
+"-------------------------------------------------------------------------------
+
+" 行頭、行末をterminalに合わせる
+nmap <C-a> ^
+nmap <C-e> $
+
+" insert mode での移動
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-j> <DOWN>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
+"フレームサイズを怠惰に変更する
+map <kPlus> :resize +5<CR>
+map! <kPlus> :resize +5<CR>
+map <kMinus> :resize -5<CR>
+map! <kMinus> :resize -5<CR>
+
+" 前回終了したカーソル行に移動
+autocmd R BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
+
+" 対応する括弧に移動
+nnoremap [ %
+nnoremap ] %
+
+" 矩形選択で自由に移動する
+set virtualedit& virtualedit+=block
+
+"ビジュアルモード時vで行末まで選択
+vnoremap v $h

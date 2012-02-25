@@ -13,8 +13,8 @@ source ~/dotfiles/vim/.vimrc.compl
 "source ~/dotfiles/.vimrc.tags
 "検索関連
 source ~/dotfiles/vim/.vimrc.search
-""移動関連
-"source ~/dotfiles/.vimrc.moving
+"移動関連
+source ~/dotfiles/vim/.vimrc.moving
 ""Color関連
 "source ~/dotfiles/.vimrc.colors
 ""編集関連
@@ -35,4 +35,3 @@ if has('gui_running')
   " http://code.google.com/p/macvim-kaoriya/wiki/Readme
   set transparency=10
 endif
-
