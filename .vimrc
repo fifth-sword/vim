@@ -11,8 +11,8 @@ source ~/dotfiles/vim/.vimrc.indent
 source ~/dotfiles/vim/.vimrc.compl
 ""Tags関連
 "source ~/dotfiles/.vimrc.tags
-""検索関連
-"source ~/dotfiles/.vimrc.search
+"検索関連
+source ~/dotfiles/vim/.vimrc.search
 ""移動関連
 "source ~/dotfiles/.vimrc.moving
 ""Color関連
