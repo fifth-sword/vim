@@ -1,16 +1,12 @@
 source ~/dotfiles/vim/.vimrc.bundle
-
 "基本設定
 source ~/dotfiles/vim/.vimrc.basic
 "表示関連
 source ~/dotfiles/vim/.vimrc.display
-
-""StatusLine設定
+"StatusLine設定
 source ~/dotfiles/vim/.vimrc.statusline
-""インデント設定
-"source ~/dotfiles/.vimrc.indent
-""表示関連
-"source ~/dotfiles/.vimrc.apperance
+"インデント設定
+source ~/dotfiles/vim/.vimrc.indent
 ""補完関連
 "source ~/dotfiles/.vimrc.completion
 ""Tags関連
@@ -29,3 +25,15 @@ source ~/dotfiles/vim/.vimrc.statusline
 "source ~/dotfiles/.vimrc.misc
 ""プラグインに依存するアレ
 "source ~/dotfiles/.vimrc.plugins_setting
+
+" MacVim用設定
+if has('gui_macvim')
+  set imdisable
+  set antialias
+  set guioptions& guioptions-=T
+  set guifont=Ricty:h13
+  " http://code.google.com/p/macvim-kaoriya/wiki/Readme
+  set transparency=10
+endif
+  echo "MacVIM!!!!"
+

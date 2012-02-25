@@ -1,0 +1,44 @@
+"-------------------------------------------------------------------------------
+" インデント Indent
+"-------------------------------------------------------------------------------
+filetype plugin on
+
+set autoindent   " 自動でインデント
+set paste        " ペースト時にautoindentを無効に
+set smartindent  " 新しい行を開始したときに、新しい行のインデントを現在行と同じ量にする。
+set cindent      " Cプログラムファイルの自動インデントを始める
+set cindent      " Cプログラムファイルの自動インデントを始める
+
+" デフォルトの設定
+" shiftwidth->sw softtabstop->sts tabstop->ts expandtab->et
+" softtabstopはTabキー押し下げ時の挿入される空白の量，0の場合はtabstopと同じ，BSにも影響する
+set sw=2 sts=0 ts=2 et
+
+" ファイル種別毎の設定
+filetype indent on
+autocmd R FileType apache       setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType aspvbs       setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType c            setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType cpp          setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType cs           setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType css          setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType coffeescript setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType diff         setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType eruby        setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType html         setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType haml         setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType java         setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType javascript   setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType perl         setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType php          setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType python       setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType ruby         setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType sh           setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType sql          setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType scala        setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType vb           setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType vim          setlocal sw=2 sts=2 ts=2 et
+autocmd R FileType xhtml        setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType xml          setlocal sw=4 sts=4 ts=4 et
+autocmd R FileType yaml         setlocal sw=2 sts=2 ts=2 et
+
