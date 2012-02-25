@@ -7,8 +7,8 @@ source ~/dotfiles/vim/.vimrc.display
 source ~/dotfiles/vim/.vimrc.statusline
 "インデント設定
 source ~/dotfiles/vim/.vimrc.indent
-""補完関連
-"source ~/dotfiles/.vimrc.completion
+"補完関連
+source ~/dotfiles/vim/.vimrc.compl
 ""Tags関連
 "source ~/dotfiles/.vimrc.tags
 ""検索関連
@@ -27,7 +27,7 @@ source ~/dotfiles/vim/.vimrc.indent
 "source ~/dotfiles/.vimrc.plugins_setting
 
 " MacVim用設定
-if has('gui_macvim')
+if has('gui_running')
   set imdisable
   set antialias
   set guioptions& guioptions-=T
@@ -35,5 +35,4 @@ if has('gui_macvim')
   " http://code.google.com/p/macvim-kaoriya/wiki/Readme
   set transparency=10
 endif
-  echo "MacVIM!!!!"
 
