@@ -1,10 +1,6 @@
 "-------------------------------------------------------------------------------
 " 表示関連
 "-------------------------------------------------------------------------------
-syntax enable
-set background=dark
-colorscheme solarized
-
 set showmatch                                     " 括弧の対応をハイライト
 set number                                        " 行番号表示
 set list                                          " 不可視文字表示
@@ -22,3 +18,16 @@ autocmd R WinEnter,BufRead * set cursorline
 " 全角スペースの表示
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue
 match ZenkakuSpace /　/
+
+syntax enable
+set background=dark
+colorscheme solarized
+" GVim用設定
+if has('gui_running')
+  set imdisable
+  set antialias
+  set guioptions& guioptions-=T
+  set guifont=Ricty:h13
+  " http://code.google.com/p/macvim-kaoriya/wiki/Readme
+  set transparency=10
+endif

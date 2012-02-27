@@ -27,7 +27,7 @@ nnoremap U :<C-u>GundoToggle<CR>
 
 " vimshell {{{
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
+"let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
 let g:vimshell_enable_smart_case = 1
 
 if has('win32') || has('win64')
@@ -64,12 +64,12 @@ function! g:my_preexec(cmdline, context)
 endfunction
 
 autocmd FileType vimshell
-\ call vimshell#altercmd#define('l', 'll -a')
+\ call vimshell#altercmd#define('l', 'ls -la')
 \| call vimshell#altercmd#define('ll', 'ls -l')
-\| call vimshell#hook#set('chpwd', ['g:my_chpwd'])
-\| call vimshell#hook#set('emptycmd', ['g:my_emptycmd'])
-\| call vimshell#hook#set('preprompt', ['g:my_preprompt'])
-\| call vimshell#hook#set('preexec', ['g:my_preexec'])
+"\| call vimshell#hook#set('chpwd', ['g:my_chpwd'])
+"\| call vimshell#hook#set('emptycmd', ['g:my_emptycmd'])
+"\| call vimshell#hook#set('preprompt', ['g:my_preprompt'])
+"\| call vimshell#hook#set('preexec', ['g:my_preexec'])
 
 command! Vs :VimShell
 " }}}
@@ -99,11 +99,13 @@ function! s:unite_my_settings()"{{{
   " Overwrite settings.
 
   " ESCキーを2回押すと終了する
-  nmap <buffer> <ESC>      <Plug>(unite_exit)
-  nmap <buffer> <ESC><ESC> <Plug>(unite_exit)
-  imap <buffer> jj      <Plug>(unite_insert_leave)
+  nmap <buffer> <ESC>       <Plug>(unite_exit)
+  nmap <buffer> <ESC><ESC>  <Plug>(unite_exit)
+  " jjでカーソル移動モードに
+  imap <buffer> jj          <Plug>(unite_insert_leave)
+  " Unite中に<C-k>でPreview
   nnoremap <silent><buffer> <C-k> :<C-u>call unite#mappings#do_action('preview')<CR>
-  imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
+  imap <buffer> <C-w>       <Plug>(unite_delete_backward_path)
   " Start insert.
   let g:unite_enable_start_insert = 1
 
