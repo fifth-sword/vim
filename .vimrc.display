@@ -20,5 +20,5 @@ autocmd R WinLeave * set nocursorline
 autocmd R WinEnter,BufRead * set cursorline
 
 " 全角スペースの表示
-highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue
 match ZenkakuSpace /　/
