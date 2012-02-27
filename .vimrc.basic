@@ -21,7 +21,7 @@ set nowrap                       " 行を折り返さない
 " Ctrl-iでヘルプ
 nnoremap <C-i>  :<C-u>help<Space>
 " カーソル下のキーワードをヘルプでひく
-nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
+nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Return>
 
 " Reloadable設定
 " http://whileimautomaton.net/2008/08/vimworkshop3-kana-presentation
@@ -41,7 +41,5 @@ set clipboard& clipboard+=unnamed
 set mouse=a
 set guioptions& guioptions+=a
 set ttymouse=xterm2
-" 挿入モードでCtrl+kを押すとクリップボードの内容を貼り付けられるようにする "
-imap <C-K>  <ESC>"*pa
 
 filetype plugin on

@@ -94,3 +94,8 @@ autocmd R FileType python        setlocal omnifunc=pythoncomplete#Complete
 autocmd R FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
 " }}}
 
+" misc {{{
+" XMLの閉タグを自動挿入
+autocmd R Filetype xml inoremap <buffer> </ </<C-x><C-o>
+
+" }}}

@@ -15,10 +15,8 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
 "フレームサイズを怠惰に変更する
-map <kPlus> :resize +5<CR>
-map! <kPlus> :resize +5<CR>
-map <kMinus> :resize -5<CR>
-map! <kMinus> :resize -5<CR>
+nnoremap <kPlus>   :<C-u>resize +5<Return>
+nnoremap <kMinus>  :<C-u>resize -5<Return>
 
 " 前回終了したカーソル行に移動
 autocmd R BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif

@@ -4,8 +4,8 @@
 
 " surround.vim {{{
 " s, ssで選択範囲を指定文字でくくる
-nmap s <Plug>Ysurround
-nmap ss <Plug>Yssurround
+" nmap s <Plug>Ysurround
+" nmap ss <Plug>Yssurround
 let g:surround_{char2nr('e')} = "begin \r end"
 let g:surround_{char2nr('d')} = "do \r end"
 let g:surround_{char2nr("-")} = ":\r"
@@ -22,7 +22,7 @@ nnoremap <Space>gb :<C-u>Gblame<Enter>
 " }}}
 
 " gundo.vim {{{
-nmap U :<C-u>GundoToggle<CR>
+nnoremap U :<C-u>GundoToggle<CR>
 " }}}
 
 " vimshell {{{
