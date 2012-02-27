@@ -9,8 +9,6 @@ source ~/dotfiles/vim/.vimrc.statusline
 source ~/dotfiles/vim/.vimrc.indent
 "補完関連
 source ~/dotfiles/vim/.vimrc.compl
-""Tags関連
-"source ~/dotfiles/.vimrc.tags
 "検索関連
 source ~/dotfiles/vim/.vimrc.search
 "移動関連
@@ -19,8 +17,6 @@ source ~/dotfiles/vim/.vimrc.moving
 source ~/dotfiles/vim/.vimrc.editing
 "エンコーディング関連
 source ~/dotfiles/vim/.vimrc.encoding
-""その他
-"source ~/dotfiles/.vimrc.misc
 "プラグイン関連
 source ~/dotfiles/vim/.vimrc.plugins
 "ファイル別設定
