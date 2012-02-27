@@ -1,5 +1,5 @@
 set nocompatible
-filetype off
+filetype plugin indent off
 
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
@@ -22,5 +22,4 @@ NeoBundle 'Lokaltog/vim-powerline'            " ステータスラインをカ�
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'sjl/gundo.vim'                     " Vimのundo履歴をVisualizeしてくれる
 
-filetype plugin on
-filetype indent on
+filetype plugin indent on

@@ -41,5 +41,3 @@ set clipboard& clipboard+=unnamed
 set mouse=a
 set guioptions& guioptions+=a
 set ttymouse=xterm2
-
-filetype plugin on
