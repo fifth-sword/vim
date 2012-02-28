@@ -2,8 +2,13 @@ set nocompatible
 filetype plugin indent off
 
 if has('vim_starting')
-  set runtimepath& runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc(expand('~/.vim/bundle'))
+  if has('win32') || has('win64')
+    set runtimepath& runtimepath+=~/_vimfiles/bundle/vundle
+    call neobundle#rc(expand('~/_vimfiles/bundle'))
+  else
+    set runtimepath& runtimepath+=~/.vim/bundle/neobundle.vim
+    call neobundle#rc(expand('~/.vim/bundle'))
+  endif
 endif
 
 NeoBundle 'Shougo/neobundle.vim'              " Plugin管理
