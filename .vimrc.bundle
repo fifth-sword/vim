@@ -12,6 +12,7 @@ if has('vim_starting')
 endif
 
 NeoBundle 'Shougo/neobundle.vim'              " Plugin管理
+NeoBundle 'banyan/recognize_charcode.vim'     " 文字コード判定プラグイン
 NeoBundle 'altercation/vim-colors-solarized'  " 目にやさしいColor Scheme
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc'
