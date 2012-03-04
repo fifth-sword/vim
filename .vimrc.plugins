@@ -29,6 +29,9 @@ nnoremap U :<C-u>GundoToggle<CR>
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 "let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
 let g:vimshell_enable_smart_case = 1
+let g:vimshell_popup_height = 35
+
+nnoremap <S-s> :VimShellPop -buffer-name=terminal<CR>
 
 if has('win32') || has('win64')
   " Display user name on Windows.
@@ -70,17 +73,12 @@ autocmd FileType vimshell
 "\| call vimshell#hook#set('emptycmd', ['g:my_emptycmd'])
 "\| call vimshell#hook#set('preprompt', ['g:my_preprompt'])
 "\| call vimshell#hook#set('preexec', ['g:my_preexec'])
-
-command! Vs :VimShell
 " }}}
 
 " unite.vim {{{
 " The prefix key.
 nnoremap [unite]   <Nop>
 nmap f [unite]
-
-nnoremap [unite]u  :<C-u>Unite -no-split<Space>
-
 " 全部乗せ
 nnoremap <silent> [unite]a  :<C-u>UniteWithCurrentDir -no-split -buffer-name=files buffer file_mru bookmark file<CR>
 " ファイル一覧
@@ -124,6 +122,8 @@ let g:unite_source_file_mru_limit = 200
 " VimFiler {{{
 let g:vimfiler_as_default_explorer = 1   " VimFilerをデフォルトのエクスプローラに
 let g:vimfiler_safe_mode_by_default = 0  " ファイル移動、削除などの操作をいつでもできるように
+let g:vimfiler_split_rule = "right"  " ファイル移動、削除などの操作をいつでもできるように
+
 " Textmate風アイコン
 let g:vimfiler_tree_leaf_icon = ' '
 let g:vimfiler_tree_opened_icon = '▾'
