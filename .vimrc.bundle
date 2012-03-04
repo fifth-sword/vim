@@ -18,13 +18,12 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'                   " VimのShell
 NeoBundle 'Shougo/vimfiler'                   " Vimのファイラ
 NeoBundle 'Shougo/neocomplcache'              " 補完Plugin
-NeoBundle 'h1mesuke/unite-outline'            " ファイルアウトライン表示Plugin
-NeoBundle 'scrooloose/nerdtree'               " EclipseのPackage Explore的にディレクトリを表示してくれるPlugin
-NeoBundle 'tpope/vim-fugitive'                " Git連携Plugin
-NeoBundle 'ujihisa/quickrun'
-NeoBundle 'vim-coffee-script'                 " CoffeeScript用Plugin
 NeoBundle 'Lokaltog/vim-powerline'            " ステータスラインをカッコよくする
-NeoBundle 'tpope/vim-surround'
+NeoBundle 'h1mesuke/unite-outline'            " ファイルアウトライン表示Plugin
+NeoBundle 'tpope/vim-fugitive'                " Git連携Plugin
+NeoBundle 'vim-coffee-script'                 " CoffeeScript用Plugin
 NeoBundle 'sjl/gundo.vim'                     " Vimのundo履歴をVisualizeしてくれる
+NeoBundle 'tpope/vim-surround'                " テキストオブジェクトを括ってくれるPlugin
+NeoBundle 'Align'                             " 整形Plugin
 
 filetype plugin indent on
