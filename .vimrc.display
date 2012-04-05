@@ -20,14 +20,14 @@ highlight ZenkakuSpace cterm=underline ctermfg=lightblue
 match ZenkakuSpace /　/
 
 syntax enable
-set background=dark
-colorscheme solarized
+"set background=dark
+colorscheme desert
 " GVim用設定
 if has('gui_running')
   set imdisable
   set antialias
   set guioptions& guioptions-=T
-  set guifont=Ricty:h13
+  "set guifont=Ricty:h13
   " http://code.google.com/p/macvim-kaoriya/wiki/Readme
-  set transparency=10
+  " set transparency=10
 endif

@@ -49,9 +49,3 @@ endif
 " ターミナルでマウスを使用できるようにする
 set mouse=a
 set ttymouse=xterm2
-
-" MacのvimでClipBoardを操作してコピー&ペーストする
-" http://d.hatena.ne.jp/MiCHiLU/20090222/1235295270
-" TODO pbcopyがexit code 1が返ってきて動かないあとで。
-" vmap <silent> sy :!pbcopy; pbpaste<CR>
-" map <silent> sp <esc>o<esc>v:!pbpaste<CR>

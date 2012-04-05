@@ -13,18 +13,9 @@ endif
 
 NeoBundle 'Shougo/neobundle.vim'              " Plugin管理
 NeoBundle 'banyan/recognize_charcode.vim'     " 文字コード判定プラグイン
-NeoBundle 'altercation/vim-colors-solarized'  " 目にやさしいColor Scheme
+NeoBundle 'scrooloose/nerdtree'               " Eclipseでいうところのパッケージエクスプローラ
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'Shougo/vimshell'                   " VimのShell
-NeoBundle 'Shougo/vimfiler'                   " Vimのファイラ
 NeoBundle 'Shougo/neocomplcache'              " 補完Plugin
-NeoBundle 'Lokaltog/vim-powerline'            " ステータスラインをカッコよくする
-NeoBundle 'h1mesuke/unite-outline'            " ファイルアウトライン表示Plugin
 NeoBundle 'tpope/vim-fugitive'                " Git連携Plugin
-NeoBundle 'vim-coffee-script'                 " CoffeeScript用Plugin
-NeoBundle 'sjl/gundo.vim'                     " Vimのundo履歴をVisualizeしてくれる
-NeoBundle 'tpope/vim-surround'                " テキストオブジェクトを括ってくれるPlugin
-NeoBundle 'Align'                             " 整形Plugin
 
 filetype plugin indent on
