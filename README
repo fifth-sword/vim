@@ -1,0 +1,23 @@
+=======================
+Vim Environment Setup
+=======================
+
+git clone::
+
+mkdir dotfiles
+cd dotfiles
+git clone https://github.com/fifth-sword/vim.git
+
+install(zsh)::
+
+sh dotfiles/vim/install.sh
+
+NeoBundle Install(README)::
+
+mkdir -p ~/.vim/bundle
+git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+Launch vim,  run :NeoBundleInstall
+
+.. _NeoBundle: https://github.com/Shougo/neobundle.vim
+
+
